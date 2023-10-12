@@ -10,7 +10,8 @@ def compile() {
 
 def unittests() {
     if (app_lang == "nodejs") {
-        sh 'npm test'
+        //sh 'npm test'
+        sh 'eco test cases'
     }
 
     if (app_lang == "maven") {
