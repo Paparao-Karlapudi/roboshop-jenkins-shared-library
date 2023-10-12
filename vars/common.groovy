@@ -12,6 +12,7 @@ def unittests() {
     if (app_lang == "nodejs") {
         //developer is missing unit test case for our project. we proceed further
         // skipping it
+        sh 'npm test'
     }
 
     if (app_lang == "maven") {
