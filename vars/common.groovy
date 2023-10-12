@@ -12,11 +12,15 @@ def unittests() {
     if (app_lang == "nodejs") {
         //developer is missing unit test case for our project. we proceed further
         // skipping it
-        //sh 'npm test'
-        sh 'eco test cases'
+        sh 'npm test || true'
+
     }
 
     if (app_lang == "maven") {
         sh 'mvn test'
+    }
+
+    if (app_lang == "python") {
+        sh 'python3 -m unittest'
     }
 }
