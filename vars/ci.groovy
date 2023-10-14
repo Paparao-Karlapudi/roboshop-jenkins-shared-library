@@ -25,8 +25,12 @@ def call() {
                 }
 
                 stage('Quality control') {
+                    environment {
+                        SONAR_USER = '$(aws ssm get-prameters --region us-eat-1 --names sonarqube.user --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
+                        SONAR_PASS = '$(aws ssm get-prameters --region us-eat-1 --names sonarqube.pass --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
+                    }
                     steps {
-                        echo 'Quality control'
+                        sh "sonar-scanner -Dsonar.host.url=http://172.31.88.23:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=cart"
                     }
                 }
                 stage('Upload code to centralized repo') {
