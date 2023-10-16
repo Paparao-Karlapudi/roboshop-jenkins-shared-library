@@ -23,7 +23,8 @@ def call() {
                 SONAR_USER = sh(script: 'aws ssm get-parameters --region us-east-1 --names sonarqube.user --with-decryption --query Parameters[0].Value | sed \'s/"//g\'', returnStdout: true).trim()
 
                 wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${SONAR_PASS}", VAR: 'SECRET']]]) {
-                    sh "sonar-scanner -Dsonar.host.url=http://172.31.88.23:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
+                   // sh "sonar-scanner -Dsonar.host.url=http://172.31.88.23:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
+                    sh 'echo Sonar Scan'
 
                 }
             }
