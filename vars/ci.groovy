@@ -4,7 +4,7 @@ def call() {
 
             stage('Checkout') {
                 cleanWs()
-                git branch: 'main', url: 'https://github.com/Paparao-Karlapudi/${component}'
+                git branch: 'main', url: "https://github.com/Paparao-Karlapudi/${component}"
             }
 
             stage('Compile/Build') {
