@@ -40,6 +40,12 @@ def call() {
                 }
             }
 
+            if ( app_lang == "maven" ) {
+                stage ('Build Package') {
+                   sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
+                }
+            }
+
             if(env.PUSH_CODE == "true") {
 
                 stage('Upload ARTIFACTS to centralized repo') {

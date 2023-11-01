@@ -5,7 +5,7 @@ def compile() {
     }
 
     if (app_lang == "maven") {
-        sh 'mvn package && cp target/${component}-1.0.jar ${component}.jar'
+        sh "mvn clean compile"
     }
 }
 
