@@ -13,7 +13,9 @@ def call() {
 
         stages {
             stage('Terraform init') {
-                sh 'terraform init -backend-config=env-${INFRA_ENV}/state.tfvars'
+                steps {
+                    sh "terraform init -backend-config=env-${INFRA_ENV}/state.tfvars"
+                }
             }
         }
 
