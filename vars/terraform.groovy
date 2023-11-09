@@ -1,3 +1,5 @@
+import groovyjarjarantlr4.v4.codegen.model.Action
+
 def call() {
     pipeline {
 
@@ -13,6 +15,7 @@ def call() {
 
         parameters {
             string(name: 'INFRA_ENV', defaultValue: '', description: 'Enter Env like dev or prod')
+            choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'ACTION')
         }
 
         stages {
@@ -25,7 +28,7 @@ def call() {
 
             stage('Terraform Apply') {
                 steps {
-                    sh "terraform apply -auto-approve -var-file=env-${INFRA_ENV}/main.tfvars"
+                    sh "terraform ${Action} -auto-approve -var-file=env-${INFRA_ENV}/main.tfvars"
                 }
             }
         }
