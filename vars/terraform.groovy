@@ -1,5 +1,3 @@
-import groovyjarjarantlr4.v4.codegen.model.Action
-
 def call() {
     pipeline {
 
